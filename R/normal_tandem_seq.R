@@ -77,6 +77,6 @@ setMethod("tandemNormalForm", "DNAString", function(seq, strand) {
 .tandemNormalForm_onestrand <- function(seq) {
   seq <- paste0(as.character(seq), as.character(seq)) |> factor()
   # tandemNormalForm_rcpp expects the input to be already concatenated to itself
-  levels(seq) <- sapply(levels(seq), tandemNormalForm_rcpp)
+  levels(seq) <- vapply(levels(seq), tandemNormalForm_rcpp, "")
   seq
 }
