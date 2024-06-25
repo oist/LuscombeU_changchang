@@ -1,12 +1,32 @@
 Package: changchang
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Analyse tandem repeats
+Version: 0.99.0
+Date: 2024-06-21
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Charles", "Plessy", , "charles.plessy@oist.jp", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-7410-6295"))
+Description: Parses and analyses output of tandem repeat detection software. 
+License: AGPL-3
+URL: 
+BugReports: https://support.bioconductor.org/tag/changchang
+biocViews: Software
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
+Suggests: 
+    BiocStyle,
+    knitr,
+    RefManageR,
+    sessioninfo,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+LinkingTo: 
+    Rcpp
+Imports: 
+    Biostrings,
+    methods,
+    Rcpp,
+    rtracklayer
+Depends:
+    GenomicRanges

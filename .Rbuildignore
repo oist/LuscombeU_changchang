@@ -1,3 +1,6 @@
-^changchang\.Rproj$
-^\.Rproj\.user$
 ^dev$
+^.*\.Rproj$
+^\.Rproj\.user$
+^README.Rmd$
+^pkgdown$
+^\.github$
