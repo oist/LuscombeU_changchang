@@ -41,30 +41,31 @@ if (!requireNamespace("BiocManager", quietly = TRUE)) {
 BiocManager::install("changchang")
 ```
 
+## Input data
+
+### `tantan`
+
+To load output of `tantan` the simplest at the moment is to convert its output
+to BED format and use the `loadTantan()` function.  Here is an exmaple on how
+to produce the BED file.
+
+```
+tantan -w 10 -f4 example.fasta | tee example.tantan.txt | awk 'OFS="\t" {print $1, $2, $3, $6, $5, "."}'  > example.tantan.bed
+```
+
+### Other tandem repeat finder softwares
+
+Not supported yet.  Patches welcome!
+
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example, eval = requireNamespace('changchang')}
-library("changchang")
-## basic example code
+library("changchang") |> suppressPackageStartupMessages()
+loadTantan(system.file('extdata/example.bed.xz', package="changchang"))
+telomeres(exampleTantan, narrow="ends")
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
 
 ## Citation
 

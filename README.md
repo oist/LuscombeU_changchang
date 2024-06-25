@@ -41,68 +41,70 @@ if (!requireNamespace("BiocManager", quietly = TRUE)) {
 BiocManager::install("changchang")
 ```
 
+## Input data
+
+### `tantan`
+
+To load output of `tantan` the simplest at the moment is to convert its
+output to BED format and use the `loadTantan()` function. Here is an
+exmaple on how to produce the BED file.
+
+    tantan -w 10 -f4 example.fasta | tee example.tantan.txt | awk 'OFS="\t" {print $1, $2, $3, $6, $5, "."}'  > example.tantan.bed
+
+### Other tandem repeat finder softwares
+
+Not supported yet. Patches welcome!
+
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library("changchang")
-#> Loading required package: GenomicRanges
-#> Loading required package: stats4
-#> Loading required package: BiocGenerics
-#> 
-#> Attaching package: 'BiocGenerics'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     IQR, mad, sd, var, xtabs
-#> The following objects are masked from 'package:base':
-#> 
-#>     anyDuplicated, aperm, append, as.data.frame, basename, cbind,
-#>     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
-#>     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
-#>     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
-#>     Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,
-#>     tapply, union, unique, unsplit, which.max, which.min
-#> Loading required package: S4Vectors
-#> 
-#> Attaching package: 'S4Vectors'
-#> The following object is masked from 'package:utils':
-#> 
-#>     findMatches
-#> The following objects are masked from 'package:base':
-#> 
-#>     expand.grid, I, unname
-#> Loading required package: IRanges
-#> Loading required package: GenomeInfoDb
+library("changchang") |> suppressPackageStartupMessages()
+loadTantan(system.file('extdata/example.bed.xz', package="changchang"))
+#> GRanges object with 1000 ranges and 3 metadata columns:
+#>            seqnames          ranges strand |     score
+#>               <Rle>       <IRanges>  <Rle> | <numeric>
+#>      [1] 1086a8205b           1-613      + | 102.66700
+#>      [2] 1086a8205b         645-767      + |   3.42857
+#>      [3] 1086a8205b        766-6420      + | 106.67900
+#>      [4] 1086a8205b       7381-7473      + |   2.26829
+#>      [5] 1086a8205b       8178-8206      - |   2.23077
+#>      ...        ...             ...    ... .       ...
+#>    [996] 1086a8205b 1706037-1706047      - |   5.50000
+#>    [997] 1086a8205b 1706066-1706079      - |   2.80000
+#>    [998] 1086a8205b 1706963-1706986      + |   3.25000
+#>    [999] 1086a8205b 1707022-1707042      + |   4.20000
+#>   [1000] 1086a8205b 1707081-1707106      + |   2.16667
+#>                                                     normTandem     nchar
+#>                                                       <factor> <integer>
+#>      [1] AACCCT                                                        6
+#>      [2] AACCCTAACCCTAACCCTAACCCTAACCCTAACCT                          35
+#>      [3] AAACCTAGCGACAACACAGGGAGAACACTCTCACCTTAACAAGAACCCTTATT        53
+#>      [4] AAAATTTTGCGCGGTTGCGGGCGGGCGCGGGGGCCGATTCC                    41
+#>      [5] ACGGGCGGGGGCC                                                13
+#>      ...                                                   ...       ...
+#>    [996]                                          CG                   2
+#>    [997]                                          AAAAC                5
+#>    [998]                                          ACTAGCC              7
+#>    [999]                                          AGCCT                5
+#>   [1000]                                          AAAAAACTAGCC        12
+#>   -------
+#>   seqinfo: 1 sequence from an unspecified genome; no seqlengths
 ```
 
 ``` r
-## basic example code
+telomeres(exampleTantan, narrow="ends")
+#> GRanges object with 1 range and 5 metadata columns:
+#>         seqnames    ranges strand |     score normTandem     nchar    rstart
+#>            <Rle> <IRanges>  <Rle> | <numeric>   <factor> <integer> <numeric>
+#>   [1] 1086a8205b     1-613      + |   102.667     AACCCT         6   2232853
+#>            rend
+#>       <numeric>
+#>   [1]   2233465
+#>   -------
+#>   seqinfo: 1 sequence from example genome
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub!
 
 ## Citation
 

@@ -9,7 +9,7 @@ Description: Parses and analyses output of tandem repeat detection software.
 License: AGPL-3
 URL: 
 BugReports: https://support.bioconductor.org/tag/changchang
-biocViews: Software
+biocViews: Software, GenomeAnnotation
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
@@ -29,4 +29,6 @@ Imports:
     Rcpp,
     rtracklayer
 Depends:
-    GenomicRanges
+    GenomicRanges,
+    R (>= 2.10)
+LazyData: true
