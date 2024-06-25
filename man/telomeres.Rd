@@ -7,7 +7,7 @@
 telomeres(gr, motif = "TTAGGG", narrow = c("no", "ends"))
 }
 \arguments{
-\item{gr}{A \code{\link[GenomicRanges:GRanges-class]{GenomicRanges::GRanges}} object produced by the \code{\link{loadTandems}}
+\item{gr}{A \code{\link[GenomicRanges:GRanges-class]{GenomicRanges::GRanges}} object produced by the \code{\link{loadTantan}}
 function}
 
 \item{motif}{The telomeric sequence motif, at the end of the plus strand,

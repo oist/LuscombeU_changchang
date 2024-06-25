@@ -25,9 +25,11 @@ LinkingTo:
     Rcpp
 Imports: 
     Biostrings,
+    GenomeInfoDb,
     methods,
     Rcpp,
-    rtracklayer
+    rtracklayer,
+    S4Vectors
 Depends:
     GenomicRanges,
     R (>= 2.10)

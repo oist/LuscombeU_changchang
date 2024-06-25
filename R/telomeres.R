@@ -3,7 +3,7 @@
 #' Searches for telomeric repeats in the whole list of tandem repeats, or
 #' narrowing the search on the ends of sequence features.
 #'
-#' @param gr A [`GenomicRanges::GRanges`] object produced by the [`loadTandems`]
+#' @param gr A [`GenomicRanges::GRanges`] object produced by the [`loadTantan`]
 #'        function
 #' @param motif The telomeric sequence motif, at the end of the plus strand,
 #'        like in TeloBase and the Telomerase Database.
@@ -11,6 +11,9 @@
 #'
 #' @author Charles Plessy
 #'
+#' @importFrom GenomeInfoDb seqinfo seqinfo<- seqlengths seqlengths<- genome genome<-
+#' @importFrom S4Vectors decode
+#' @importFrom GenomicRanges start end seqnames
 #' @export
 #'
 #' @examples
